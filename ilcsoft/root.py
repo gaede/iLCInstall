@@ -21,7 +21,10 @@ class ROOT(BaseILC):
         #self.installSupport = False
         self.hasCMakeBuildSupport = False
 
-        self.download.supportedTypes = [ "wget", "svn-export", "svn" ]
+#        self.download.supportedTypes = [ "wget", "svn-export", "svn" ]
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'root-project'
+        self.download.gitrepo = 'root'
 
         self.reqfiles = [
                 ["lib/libCore.so", "lib64/libCore.so", "lib/libCore.dylib"], 
@@ -31,22 +34,22 @@ class ROOT(BaseILC):
 
         self.reqmodules_external = [ "GSL" , "MySQL" ]
 
-    def setMode(self, mode):
-        BaseILC.setMode(self, mode)
+##    def setMode(self, mode):
+##        BaseILC.setMode(self, mode)
+##
+##        self.download.url = 'https://root.cern.ch/download/root_v%s.source.tar.gz' % self.version
+##        self.download.svnurl = 'http://root.cern.ch/svn/root'
+##
+##        if( Version( self.version ) == 'HEAD' ):
+##            self.download.svnurl += '/trunk'
+##        else:
+##            self.download.svnurl += '/tags/v' + self.version.replace('.','-')
 
-        self.download.url = 'https://root.cern.ch/download/root_v%s.source.tar.gz' % self.version
-        self.download.svnurl = 'http://root.cern.ch/svn/root'
-
-        if( Version( self.version ) == 'HEAD' ):
-            self.download.svnurl += '/trunk'
-        else:
-            self.download.svnurl += '/tags/v' + self.version.replace('.','-')
-
-    def init(self):
-        BaseILC.init(self)
-
-        if( Version( self.version ) == 'HEAD' and self.download.type[:3] != 'svn' ):
-            self.download.type="svn-export"
+##    def init(self):
+##        BaseILC.init(self)
+##
+##        if( Version( self.version ) == 'HEAD' and self.download.type[:3] != 'svn' ):
+##            self.download.type="svn-export"
 
 
     def downloadSources(self):
